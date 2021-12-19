@@ -1,0 +1,45 @@
+Installation 
+1.	Go to the Tomcat Web page. 
+2.	Click on Binaries under the Download label on the left side of the page. 
+3.	Scroll down until you see Tomcat 4.1.x. (x will be some number greater than 10). 
+4.	Click on the link ending with exe (e.g. 4.1.27 exe). 
+5.	Download and run the exe file. 
+6.	Use the default settings and provide a password that you will remember. 
+7.	now assume that your tomcat is installed at c:\tomcat
+Running tomcat server
+1.	Start Tomcat by finding its start program in the Programs Menu (located in the Start menu). Look under Apache Tomcat 4.1 and select "Start Tomcat". 
+2.	Open a Web browser and type in the following URL: 
+http://localhost:8080/<filename>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#call').click(()=>            
+            {
+                let word = $("#word").val()
+                $.get("https://visnox.herokuapp.com/"+word,(res)=>{
+                    let htmlStr = "<h3>Position - "+res[0].position+"</h3>" + "<h3>Definition - "+res[0].definition+"</h3>"
+                    $("#output").html("")
+                    $("#output").html(htmlStr)
+                });
+            });
+        });
+    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Dynamic page</title>
+</head>
+<body>
+    <div class="container text-center mt-4">
+        <h1>Free Dictionary</h1>
+        Search word - <input id="word" type="text" name="" value="" />
+        <input type="button"  value="Search" name="" class="btn btn-primary" id="call"/>
+        <div id="output" class="container" style="width: 500px;">
+        </div>
+    </div>
+</body>
